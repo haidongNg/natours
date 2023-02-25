@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"natours/db"
 	"natours/pkg/logging"
 	"natours/pkg/setting"
 	"natours/routers"
@@ -11,6 +12,7 @@ import (
 
 func init() {
 	setting.Setup()
+	db.Init()
 	logging.Setup()
 }
 
@@ -22,6 +24,5 @@ func main() {
 	routerInit := routers.InitRouter()
 	routerInit.SetTrustedProxies([]string{"localhost"})
 	endPoint := fmt.Sprintf(":%d", 8080)
-
 	routerInit.Run(endPoint)
 }
